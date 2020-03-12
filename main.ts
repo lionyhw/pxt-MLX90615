@@ -18,7 +18,6 @@ namespace MLX90615 {
         Fahrenheit
     }
 
-
     /*
     *
     */
@@ -28,28 +27,28 @@ namespace MLX90615 {
         let retemp = 0
         switch (target) {
             case targetList.Object:
-                if (UnitList.Centigrade) {
+                if (Unit == 0) {
                     retemp = readdata(objectAddr);
-                    return Math.round(retemp * 100) / 100
                 }
                 else {
                     retemp = readdata(objectAddr);
-                    return Math.round(retemp * 100) / 100
+                    retemp = retemp * 9 / 5 + 32
                 }
-
+                break;
             case targetList.Ambiant:
-                if (UnitList.Centigrade) {
+                if (Unit == 0) {
                     retemp = readdata(ambientAddr);
-                    return Math.round(retemp * 9) / 5 + 32
+
                 }
                 else {
                     retemp = readdata(ambientAddr);
-                    return Math.round(retemp * 9) / 5 + 32
+                    retemp = retemp * 9 / 5 + 32
                 }
-
+                break;
             default:
-                return 0;
+                retemp = 0;
         }
+        return Math.round(retemp * 100) / 100
     }
     function readdata(reg: NumberFormat.UInt8BE): number {
         pins.i2cWriteNumber(MCUaddr, reg, NumberFormat.UInt8BE, true);
