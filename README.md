@@ -1,6 +1,10 @@
 # pxt-mlx90615
 
+## temperature compensation
 
+Human body temperature + 3℃
+
+Indoor environment - 5 ℃
 
 ## TODO
 
