@@ -34,6 +34,7 @@ namespace MLX90615 {
                 }
                 else{
                     retemp = readdata(objectAddr);
+                    return Math.round(retemp * 100) / 100
                 }
                 
             case targetList.Ambiant:
@@ -43,6 +44,7 @@ namespace MLX90615 {
                 }
                 else {
                     retemp = readdata(ambientAddr);
+                    return Math.round(retemp * 9) / 5 + 32
                 }
                 
             default:
