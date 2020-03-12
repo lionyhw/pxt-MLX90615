@@ -11,7 +11,7 @@ namespace MLX90615 {
         //% block="Ambiant"
         Ambiant
     }
-    export enum UnitList{
+    export enum UnitList {
         //% block="℃"
         Centigrade,
         //% block="℉"
@@ -24,7 +24,7 @@ namespace MLX90615 {
     */
 
     //% block="Value of MLX90615 %target Unit %Unit"
-    export function MLX90615tempe(target: targetList,Unit: UnitList): number {
+    export function MLX90615tempe(target: targetList, Unit: UnitList): number {
         let retemp = 0
         switch (target) {
             case targetList.Object:
@@ -32,11 +32,11 @@ namespace MLX90615 {
                     retemp = readdata(objectAddr);
                     return Math.round(retemp * 100) / 100
                 }
-                else{
+                else {
                     retemp = readdata(objectAddr);
                     return Math.round(retemp * 100) / 100
                 }
-                
+
             case targetList.Ambiant:
                 if (UnitList.Centigrade) {
                     retemp = readdata(ambientAddr);
@@ -46,7 +46,7 @@ namespace MLX90615 {
                     retemp = readdata(ambientAddr);
                     return Math.round(retemp * 9) / 5 + 32
                 }
-                
+
             default:
                 return 0;
         }
@@ -57,7 +57,6 @@ namespace MLX90615 {
         temp *= .02
         temp -= 273.15
         return temp
-        return Math.round(temp * 100) / 100
     }
 
 
