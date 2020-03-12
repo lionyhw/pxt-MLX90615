@@ -1,9 +1,8 @@
 /**
  * MLX90615 driver, which can detect environment and target temperature by ELECFREAKS Co.ltd
  */
-//%color=#00b1b1 icon="\uf2cb" block="MLX90615"
+//% color=#00b1b1 icon="\uf2cb" block="MLX90615"
 namespace MLX90615 {
-
     const mcuAddr = 0x5B
     const objectAddr = 0x27
     const ambientAddr = 0x26
@@ -25,7 +24,6 @@ namespace MLX90615 {
         //% block="℉"
         Fahrenheit
     }
-
     /**
      * TODO: Set the speed of left and right wheels. 
      * @param target detected targets , eg: targetList.Object
@@ -48,7 +46,6 @@ namespace MLX90615 {
             case targetList.Ambiant:
                 if (Unit == 0) {
                     retemp = readdata(ambientAddr);
-
                 }
                 else {
                     retemp = readdata(ambientAddr);
@@ -60,6 +57,7 @@ namespace MLX90615 {
         }
         return Math.round(retemp * 100) / 100
     }
+
     function readdata(reg: NumberFormat.UInt8BE): number {
         pins.i2cWriteNumber(mcuAddr, reg, NumberFormat.UInt8BE, true);
         let temp = pins.i2cReadNumber(mcuAddr, NumberFormat.UInt16LE, true);
@@ -67,6 +65,4 @@ namespace MLX90615 {
         temp -= 273.15
         return temp
     }
-
-
 }
