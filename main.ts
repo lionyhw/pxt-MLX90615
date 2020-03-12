@@ -1,3 +1,6 @@
+/**
+ * MLX90615 driver, which can detect environment and target temperature by ELECFREAKS Co.ltd
+ */
 //%color=#00b1b1 icon="\uf2cb" block="MLX90615"
 namespace MLX90615 {
 
