@@ -1,27 +1,50 @@
 //%color=#00b1b1 icon="\uf2cb" block="MLX90615"
 namespace MLX90615 {
 
+    const MCUaddr = 0x5B
+    const objectAddr = 0x27
+    const ambientAddr = 0x26
+
     export enum targetList {
         //% block="Object"
         Object,
         //% block="Ambiant"
         Ambiant
     }
+    export enum UnitList{
+        //% block="℃"
+        Centigrade,
+        //% block="℉"
+        Fahrenheit
+    }
 
-    const MCUaddr = 0x5B
-    const objectAddr = 0x27
-    const ambientAddr = 0x26
+
     /*
     *
     */
 
-    //% block="Temperature %target"
-    export function MLX90615tempe(target: targetList): number {
+    //% block="Value of MLX90615 %target Unit %Unit"
+    export function MLX90615tempe(target: targetList,Unit: UnitList): number {
+        let retemp = 0
         switch (target) {
-            case 0:
-                return readdata(objectAddr);
-            case 1:
-                return readdata(ambientAddr);
+            case targetList.Object:
+                if (UnitList.Centigrade) {
+                    retemp = readdata(objectAddr);
+                    return Math.round(retemp * 100) / 100
+                }
+                else{
+                    retemp = readdata(objectAddr);
+                }
+                
+            case targetList.Ambiant:
+                if (UnitList.Centigrade) {
+                    retemp = readdata(ambientAddr);
+                    return Math.round(retemp * 9) / 5 + 32
+                }
+                else {
+                    retemp = readdata(ambientAddr);
+                }
+                
             default:
                 return 0;
         }
@@ -31,6 +54,7 @@ namespace MLX90615 {
         let temp = pins.i2cReadNumber(MCUaddr, NumberFormat.UInt16LE, true);
         temp *= .02
         temp -= 273.15
+        return temp
         return Math.round(temp * 100) / 100
     }
 
