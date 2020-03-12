@@ -4,7 +4,7 @@
 //%color=#00b1b1 icon="\uf2cb" block="MLX90615"
 namespace MLX90615 {
 
-    const MCUaddr = 0x5B
+    const mcuAddr = 0x5B
     const objectAddr = 0x27
     const ambientAddr = 0x26
     /**
@@ -61,8 +61,8 @@ namespace MLX90615 {
         return Math.round(retemp * 100) / 100
     }
     function readdata(reg: NumberFormat.UInt8BE): number {
-        pins.i2cWriteNumber(MCUaddr, reg, NumberFormat.UInt8BE, true);
-        let temp = pins.i2cReadNumber(MCUaddr, NumberFormat.UInt16LE, true);
+        pins.i2cWriteNumber(mcuAddr, reg, NumberFormat.UInt8BE, true);
+        let temp = pins.i2cReadNumber(mcuAddr, NumberFormat.UInt16LE, true);
         temp *= .02
         temp -= 273.15
         return temp
