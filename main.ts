@@ -4,13 +4,18 @@ namespace MLX90615 {
     const MCUaddr = 0x5B
     const objectAddr = 0x27
     const ambientAddr = 0x26
-
+    /**
+    * List of detected targets
+    */
     export enum targetList {
         //% block="Object"
         Object,
         //% block="Ambiant"
         Ambiant
     }
+    /**
+    * Unit of temperature
+    */
     export enum UnitList {
         //% block="℃"
         Centigrade,
@@ -18,10 +23,12 @@ namespace MLX90615 {
         Fahrenheit
     }
 
-    /*
-    *
-    */
-
+    /**
+     * TODO: Set the speed of left and right wheels. 
+     * @param target detected targets , eg: targetList.Object
+     * @param Unit Unit of temperature, eg: -UnitList.Centigrade
+     */
+    //% weight=99
     //% block="Value of MLX90615 %target Unit %Unit"
     export function MLX90615tempe(target: targetList, Unit: UnitList): number {
         let retemp = 0
